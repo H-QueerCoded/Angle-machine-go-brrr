@@ -11,14 +11,15 @@ public class angleMachine {
 		Object selectedValue = message();
 		while(selectedValue!=null) {
 			if(selectedValue == "Rectangular") {
-				float[] input = input();
-				float value = input[0];
-				float angle = input[1];
+				double[] input = input();
+				double value = input[0];
+				double angle = input[1];
+				double cos = value*Math.cos(angle);
 			}
 			else {
-				float[] input = input();
-				float value = input[0];
-				float angle = input[1];
+				double[] input = input();
+				double value = input[0];
+				double angle = input[1];
 			}
 			selectedValue = message();
 		}
@@ -30,7 +31,7 @@ public class angleMachine {
 		        JOptionPane.INFORMATION_MESSAGE, null,
 		        possibleValues, possibleValues[0]);
 	}
-	private static float[] input() {
+	private static double[] input() {
 		JTextField value = new JTextField(10);
 	    JTextField angle = new JTextField(10);
 		JPanel myPanel = new JPanel();
@@ -41,9 +42,9 @@ public class angleMachine {
 	      myPanel.add(angle);
 	      int result = JOptionPane.showConfirmDialog(null, myPanel, 
 	               "Please Enter Input", JOptionPane.OK_CANCEL_OPTION);
-	      float[] arr = new float[2];
-	      arr[0] = Float.parseFloat(value.getText());
-	      arr[1] = Float.parseFloat(angle.getText());
+	      double[] arr = new double[2];
+	      arr[0] = Double.parseDouble(value.getText());
+	      arr[1] = Double.parseDouble(angle.getText());
 	      return arr;
 	}
 }
