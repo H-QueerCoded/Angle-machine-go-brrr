@@ -18,7 +18,6 @@ public class angleMachine {
 					double cos = value*Math.cos(angle);
 					double sin = value*Math.sin(angle);
 					String out = "Cosine: "+cos+"\nSine: "+sin;
-					//JOptionPane.showConfirmDialog(null, out);
 					JOptionPane.showMessageDialog(null, out);
 				}
 			}
