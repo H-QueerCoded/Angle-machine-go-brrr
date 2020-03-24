@@ -12,14 +12,22 @@ public class angleMachine {
 		while(selectedValue!=null) {
 			if(selectedValue == "Rectangular") {
 				double[] input = input();
-				double value = input[0];
-				double angle = input[1];
-				double cos = value*Math.cos(angle);
+				if(input!=null) {
+					double value = input[0];
+					double angle = input[1];
+					double cos = value*Math.cos(angle);
+					double sin = value*Math.sin(angle);
+					String out = "Cosine: "+cos+"\nSine: "+sin;
+					//JOptionPane.showConfirmDialog(null, out);
+					JOptionPane.showMessageDialog(null, out);
+				}
 			}
 			else {
 				double[] input = input();
-				double value = input[0];
-				double angle = input[1];
+				if(input!=null) {
+					double value = input[0];
+					double angle = input[1];
+				}
 			}
 			selectedValue = message();
 		}
@@ -42,9 +50,13 @@ public class angleMachine {
 	      myPanel.add(angle);
 	      int result = JOptionPane.showConfirmDialog(null, myPanel, 
 	               "Please Enter Input", JOptionPane.OK_CANCEL_OPTION);
-	      double[] arr = new double[2];
-	      arr[0] = Double.parseDouble(value.getText());
-	      arr[1] = Double.parseDouble(angle.getText());
-	      return arr;
+	      if(result == JOptionPane.OK_OPTION) {
+		      double[] arr = new double[2];
+		      arr[0] = Double.parseDouble(value.getText());
+		      arr[1] = Double.parseDouble(angle.getText());
+		      return arr;
+	      }
+	      else
+	    	  return null;
 	}
 }
