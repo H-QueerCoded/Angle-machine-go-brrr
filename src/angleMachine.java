@@ -9,12 +9,7 @@ public class angleMachine {
 			if(selectedValue == 1) {
 				double[] input = input1(sc);
 				if(input!=null) {
-					double value = input[0];
-					double angle = input[1];
-					double cos = value*Math.cos(Math.toRadians(angle));
-					double sin = value*Math.sin(Math.toRadians(angle));
-					String out = "Cosine: "+cos+"\nSine: "+sin+"\n";
-					System.out.println(out);
+					polToRect(input);
 				}
 			}
 			else if(selectedValue == 2) {
@@ -37,8 +32,10 @@ public class angleMachine {
 					double a2 = input[3];
 					double vector = v1*v2;
 					double angle = a1+a2;
-					String out = "Vector: "+vector+"\nAngle: "+angle+"\n";
+					String out = "Vector: "+vector+"\nAngle: "+angle;
 					System.out.println(out);
+					double arr[] = {vector,angle};
+					polToRect(arr);
 				}
 			}
 			else if(selectedValue == 4) {
@@ -50,8 +47,10 @@ public class angleMachine {
 					double a2 = input[3];
 					double vector = v1/v2;
 					double angle = a1-a2;
-					String out = "Vector: "+vector+"\nAngle: "+angle+"\n";
+					String out = "Vector: "+vector+"\nAngle: "+angle;
 					System.out.println(out);
+					double arr[] = {vector,angle};
+					polToRect(arr);
 				}
 			}
 			selectedValue = consIn(sc);
@@ -66,6 +65,14 @@ public class angleMachine {
 				+ "\nOther to exit\nMake a selection: ");
 	    int i = scan.nextInt();
 		return i;
+	}
+	private static void polToRect(double[] input) {
+		double value = input[0];
+		double angle = input[1];
+		double cos = value*Math.cos(Math.toRadians(angle));
+		double sin = value*Math.sin(Math.toRadians(angle));
+		String out = "Cosine: "+cos+"\nSine: "+sin+"\n";
+		System.out.println(out);
 	}
 	private static double[] input1(Scanner sc) {
 		double[] input = new double[2];
