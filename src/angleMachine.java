@@ -1,13 +1,10 @@
-import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.util.Scanner;
 
 public class angleMachine {
 	
 	public static void main(String[] args) {
-		int selectedValue = Integer.parseInt(message().toString());
+		//int selectedValue = Integer.parseInt(message().toString());
+		int selectedValue = consIn();
 		while(selectedValue == 1 || selectedValue == 2) {
 			if(selectedValue == 1) {
 				double[] input = input1();
@@ -16,68 +13,47 @@ public class angleMachine {
 					double angle = input[1];
 					double cos = value*Math.cos(Math.toRadians(angle));
 					double sin = value*Math.sin(Math.toRadians(angle));
-					String out = "Cosine: "+cos+"\nSine: "+sin;
-					JOptionPane.showMessageDialog(null, out);
+					String out = "Cosine: "+cos+"\nSine: "+sin+"\n";
+					System.out.println(out);
 				}
 			}
 			else if(selectedValue == 2) {
 				double[] input = input2();
 				if(input!=null) {
-					double one = input[0];
-					double two = input[1];
-					double vector = Math.sqrt((one*one)+(two*two));
-					double angle = Math.toDegrees(Math.atan(two/one));
-					String out = "Vector: "+vector+"\nAngle: "+angle;
-					JOptionPane.showMessageDialog(null, out);
+					double r = input[0];
+					double nr = input[1];
+					double vector = Math.sqrt((r*r)+(nr*nr));
+					double angle = Math.toDegrees(Math.atan(nr/r));
+					String out = "Vector: "+vector+"\nAngle: "+angle+"\n";
+					System.out.println(out);
 				}
 			}
-			selectedValue = Integer.parseInt(message().toString());
+			selectedValue = consIn();
 		}
 	}
 	
-	private static Object message() {
-		return JOptionPane.showInputDialog(null,
-		        "Polar to Rectangular: 1 \nRectangular to Polar: 2", "Input",
-		        JOptionPane.INFORMATION_MESSAGE, null,null,null);
+	private static int consIn() {
+		System.out.print("Polar to Rectangular: 1 \nRectangular to Polar: 2\nMake a selection: ");
+		Scanner sc = new Scanner(System.in);
+	    int i = sc.nextInt();
+		return i;
 	}
 	private static double[] input1() {
-		JTextField value = new JTextField(10);
-	    JTextField angle = new JTextField(10);
-		JPanel myPanel = new JPanel();
-	      myPanel.add(new JLabel("Value:"));
-	      myPanel.add(value);
-	      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-	      myPanel.add(new JLabel("Angle:"));
-	      myPanel.add(angle);
-	      int result = JOptionPane.showConfirmDialog(null, myPanel, 
-	               "Polar to Rectangular", JOptionPane.OK_CANCEL_OPTION);
-	      if(result == JOptionPane.OK_OPTION) {
-		      double[] arr = new double[2];
-		      arr[0] = Double.parseDouble(value.getText());
-		      arr[1] = Double.parseDouble(angle.getText());
-		      return arr;
-	      }
-	      else
-	    	  return null;
+		double[] input = new double[2];
+		System.out.print("Enter Value: ");
+		Scanner sc = new Scanner(System.in);
+		input[0] = sc.nextDouble();
+		System.out.print("Enter Angle: ");
+		input[1] = sc.nextDouble();
+		return input;
 	}
 	private static double[] input2() {
-		JTextField value = new JTextField(10);
-	    JTextField angle = new JTextField(10);
-		JPanel myPanel = new JPanel();
-	      myPanel.add(new JLabel("Real:"));
-	      myPanel.add(value);
-	      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-	      myPanel.add(new JLabel("Non-real:"));
-	      myPanel.add(angle);
-	      int result = JOptionPane.showConfirmDialog(null, myPanel, 
-	               "Rectangular to Polar", JOptionPane.OK_CANCEL_OPTION);
-	      if(result == JOptionPane.OK_OPTION) {
-		      double[] arr = new double[2];
-		      arr[0] = Double.parseDouble(value.getText());
-		      arr[1] = Double.parseDouble(angle.getText());
-		      return arr;
-	      }
-	      else
-	    	  return null;
+		double[] input = new double[2];
+		System.out.print("Enter Real Value: ");
+		Scanner sc = new Scanner(System.in);
+		input[0] = sc.nextDouble();
+		System.out.print("Enter Non-Real Value: ");
+		input[1] = sc.nextDouble();
+		return input;
 	}
 }
